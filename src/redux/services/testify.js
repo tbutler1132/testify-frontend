@@ -8,6 +8,13 @@ export const testifyApi = createApi({
       getUserById: builder.query({
         query: (id) => `users/${id}`,
       }),
+      uploadMedia: builder.mutation({
+        query: ({files, id}) => ({
+          url: `users/${id}/upload`,
+          method: 'POST',
+          body: files
+        })
+      }),
       createTest: builder.mutation({
         query: ({test, id}) => ({
           url: `users/${id}/tests`,
@@ -25,4 +32,4 @@ export const testifyApi = createApi({
     }),
   })
 
-export const { useGetUserByIdQuery, useLoginMutation, useCreateTestMutation } = testifyApi
+export const { useGetUserByIdQuery, useLoginMutation, useCreateTestMutation, useUploadMediaMutation } = testifyApi
