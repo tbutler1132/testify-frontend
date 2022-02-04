@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import ProfileTest from './ProfileTest';
+import ProfileTestContainer from '../containers/ProfileTestContainer';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 import UploadModal from './UploadModal';
 
 function Profile() {
@@ -9,22 +10,7 @@ function Profile() {
     
     return (
         <div>
-            <div className="profile-header-container">
-                <h1>{user.username}</h1>
-                <h4>Karma</h4>
-                <h4>Link</h4>
-                <Link to="/test">
-                    <button>Create Test</button>
-                </Link>
-                <UploadModal />
-                <button>Vote</button>
-                <Link to="/media">
-                    <button>View your media</button>       
-                </Link>
-                <button>Logout</button>
-            </div>
-            <hr></hr>
-            <ProfileTest />
+            <ProfileTestContainer />
         </div>
     );
 }

@@ -7,7 +7,7 @@ function UserMediaContainer(props) {
     const renderMedia = () => {
         return user.media.map(media => 
         <div>
-            {media}
+            {media.title}
         </div>    
         )
     }

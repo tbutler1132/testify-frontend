@@ -8,6 +8,9 @@ export const testifyApi = createApi({
       getUserById: builder.query({
         query: (id) => `users/${id}`,
       }),
+      getRandomTest: builder.query({
+        query: (id) => `users/tests/random?user_id=${id}`
+      }),
       uploadMedia: builder.mutation({
         query: ({files, id}) => ({
           url: `users/${id}/upload`,
@@ -22,6 +25,13 @@ export const testifyApi = createApi({
           body: test
         })
       }),
+      updateTest: builder.mutation({
+        query: (test) => ({
+          url: `users/${test.userId}/tests/${test.testId}`,
+          method: 'POST',
+          body: test
+        })
+      }),
       login: builder.mutation({
         query: (credentials) => ({
           url: `users/signin`,
@@ -32,4 +42,4 @@ export const testifyApi = createApi({
     }),
   })
 
-export const { useGetUserByIdQuery, useLoginMutation, useCreateTestMutation, useUploadMediaMutation } = testifyApi
+export const { useGetUserByIdQuery, useLoginMutation, useCreateTestMutation, useUploadMediaMutation, useGetRandomTestQuery, useUpdateTestMutation } = testifyApi

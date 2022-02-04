@@ -75,7 +75,7 @@ function UploadModal() {
           reader.onload = () => {
           // Do whatever you want with the file contents
             const binaryStr = reader.result
-            setFiles(binaryStr)
+            setFiles({files: binaryStr, title: file.name})
           }
         })
         
@@ -91,7 +91,7 @@ function UploadModal() {
           } = useDropzone({onDrop, multiple: true, maxFiles: 2});
 
           const submitHandler = () => {
-            uploadMedia({id: user._id, files: {files: convertedFiles}})
+            uploadMedia({id: user._id, files: convertedFiles})
           }
     
           const files = acceptedFiles.map(file => (
