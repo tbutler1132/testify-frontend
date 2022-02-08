@@ -6,12 +6,16 @@ function ProfileTestContainer() {
 
     const renderTests = () => {
         return user.tests.map(test => 
-            <div className='test-profile-container'>
+            <div className='test-profile-container'
+            key={test.title}
+            >
                 <p>
                 Title: {test.title}
                 </p>
                 {test.media.map(media => 
-                    <div>
+                    <div
+                    key={media._id}
+                    >
                         <p>{media.title}</p>    
                         <p>{media.votes}</p>    
                     </div>
@@ -22,6 +26,7 @@ function ProfileTestContainer() {
 
     return (
         <div>
+            <h1>MY TESTS</h1>
             {renderTests()}
         </div>
     );
