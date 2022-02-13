@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useGetRandomTestQuery, useUpdateMediaMutation } from '../redux/services/testify';
+import Button from '@mui/material/Button'
 
 function VoteOnTestContainer(props) {
     const { data, error, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
@@ -19,17 +20,32 @@ function VoteOnTestContainer(props) {
         refetch()
     }
 
+    const buttonStyle = (id) => {
+        if(queuedVote){
+            if (queuedVote._id === id){
+                return "contained"
+            }else{
+                return "outlined"
+            }
+        }else{
+            return "outlined"
+        }
+    }
+
     return (
-        <div>
+        <div className='test-vote-container'>
             {isFetching ? <div>Loading...</div> 
             :
             <>
-            <h3>You've currently selected {queuedVote?.title}</h3>
-            <label >{data.media[0].title}</label>
-            <button onClick={(e) => voteHandler(e, 0)}>Vote</button>
-            <label>{data.media[1].title}</label>
-            <button onClick={(e) => voteHandler(e, 1)}>Vote</button>
-            <button onClick={submitHandler}>Submit</button>
+            <div className="poll-option-container">
+                <label >{data.media[0].title}</label>
+                <Button variant={buttonStyle(data.media[0]._id)} onClick={(e) => voteHandler(e, 0)}>Vote</Button>
+            </div>
+            <div className="poll-option-container">
+                <label>{data.media[1].title}</label>
+                <Button variant={buttonStyle(data.media[1]._id)} onClick={(e) => voteHandler(e, 1)}>Vote</Button>
+            </div>
+            <Button disabled={!queuedVote} onClick={submitHandler}>Submit</Button>
             </>
             }
         </div>
