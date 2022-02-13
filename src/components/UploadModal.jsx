@@ -3,6 +3,7 @@ import { useMemo, useCallback, useState } from 'react';
 import {useDropzone} from 'react-dropzone';
 import { useUploadMediaMutation } from '../redux/services/testify';
 import { useSelector } from 'react-redux';
+import Button from '@mui/material/Button'
 
 const baseStyle = {
     flex: 1,
@@ -58,7 +59,7 @@ function UploadModal() {
   
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
-      subtitle.style.color = '#f00';
+      // subtitle.style.color = '#f00';
     }
   
     function closeModal() {
@@ -111,9 +112,10 @@ function UploadModal() {
             isDragReject
           ]);
 
+
     return (
         <div>
-            <button onClick={openModal}>Upload Media</button>
+            <Button variant='outlined' onClick={openModal}>Upload Media</Button>
             <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
@@ -127,11 +129,11 @@ function UploadModal() {
                         <p>Drag 'n' drop some files here, or click to select files</p>
                     </div>
                     <aside>
-                        <h4>Files</h4>
+                        <h4>File</h4>
                         <ul>{files}</ul>
                     </aside>
                 </div>
-                <button onClick={() => submitHandler()}>Upload</button>
+                <Button disabled={!convertedFiles} variant="contained" onClick={() => submitHandler()}>Upload</Button>
             </Modal>
         </div>
     );

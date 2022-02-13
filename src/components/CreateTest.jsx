@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import useArray from '../hooks/useArray';
 import { useCreateTestMutation } from '../redux/services/testify';
+import Button from '@mui/material/Button'
+// import { useNavigate } from 'react-router-dom';
 
 function CreateTest() {   
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const { user } = useSelector((state) => state.auth)
     const { array, set, push, remove, filter, update, clear } = useArray([null, null])
-    const [createTest, {isLoading}] = useCreateTestMutation()
+    const [createTest, {isSuccess}] = useCreateTestMutation()
 
     const titleChangeHandler = (e) => {
         setTitle(e.target.value)
@@ -43,28 +45,36 @@ function CreateTest() {
 
     const renderMedia = (e) => {
         return user.media.map(media => 
-            <li key={media.url} onClick={(e) => mediaClickHandler(e, {url: media.url, title: media.title, votes: 0})}>
+            <li style={{color: mediaSelected(media.url) ? "green" : "black", cursor: "pointer"}} key={media.url} onClick={(e) => mediaClickHandler(e, {url: media.url, title: media.title, votes: 0})}>
                 {media.title}
             </li>    
         )
     }
 
-    console.log(array)
+    const mediaSelected = (url) => {
+        return array.map(el => el?.url).includes(url)
+    }
+
+    const validateForm = () => {
+        return !!title && !!description && !array.includes(null)
+    }
 
     return (
-        <div className="container">
-            <label>Title</label>
-            <input value={title} onChange={titleChangeHandler}/>
-            <label>Description</label>
-            <textarea value={description} onChange={descriptionChangeHandler}/>
+        <div className="create-test-container">
+            <div className="create-test-form-container">
+                <label>Title</label>
+                <input value={title} onChange={titleChangeHandler}/>
+                <label>Description</label>
+                <textarea value={description} onChange={descriptionChangeHandler}/>
+            </div>
             <p onClick={(e) => selectionClickHandler(e, 0)}>{array[0] ? array[0].title : "Pick something"}</p>
             <p onClick={(e) => selectionClickHandler(e, 1)}>{array[1] ? array[1].title : "Pick something"}</p>
             <hr></hr>
-            <p>List of media</p>
+            <h3>Select Media</h3>
             <ul>
                 {renderMedia()}
             </ul>
-            <button onClick={() => submitHandler()}>Create test</button>
+            <Button disabled={!validateForm()} variant="contained" onClick={() => submitHandler()}>Create test</Button>
         </div>
     );
 }

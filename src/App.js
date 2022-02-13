@@ -6,6 +6,7 @@ import UserMediaContainer from './containers/UserMediaContainer';
 import VoteOnTestContainer from './containers/VoteOnTestContainer';
 import Header from './components/Header';
 import './App.css';
+// import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (

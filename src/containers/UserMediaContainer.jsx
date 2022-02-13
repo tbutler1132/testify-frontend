@@ -7,7 +7,7 @@ function UserMediaContainer(props) {
     const renderMedia = () => {
         return user.media.map(media => 
         <div
-        key={media.title}
+        key={media._id}
         >
             {media.title}
         </div>    

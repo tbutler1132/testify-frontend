@@ -9,24 +9,31 @@ function ProfileTestContainer() {
             <div className='test-profile-container'
             key={test.title}
             >
-                <p>
-                Title: {test.title}
-                </p>
-                {test.media.map(media => 
-                    <div
-                    key={media._id}
-                    >
-                        <p>{media.title}</p>    
-                        <p>{media.votes}</p>    
-                    </div>
-                )}
+                <div className="test-profile-title-container">
+                    <h4>
+                        {test.title}
+                    </h4>
+                </div>
+                <div
+                className="test-profile-media-container"
+                >
+                    {test.media.map(media => 
+                        <div
+                        key={media._id}
+                        className="test-profile-media"
+                        >
+                            <p>{media.title}</p>    
+                            <p>{media.votes}</p>    
+                        </div>
+                    )}
+                </div>
             </div>    
         )
     }
 
     return (
         <div>
-            <h1>MY TESTS</h1>
+            <h1>My Tests</h1>
             {renderTests()}
         </div>
     );

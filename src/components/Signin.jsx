@@ -9,6 +9,7 @@ function Signin() {
     const dispatch = useDispatch()
     let navigate = useNavigate()
     const [login, {isLoading}] = useLoginMutation()
+
     const onSubmit = async (data) => {
         try {
             const user = await login(data).unwrap()
@@ -20,15 +21,16 @@ function Signin() {
     }
 
     return (
-        <>
+        <div className='signin-container'>
+            <h1>Sign in</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Email</label>
                 <input {...register("email")} />
                 <label>Password</label>
-                <input {...register("password")} />
+                <input {...register("password")} type="password"/>
                 <input type="submit" />
             </form>
-        </>
+        </div>
     );
 }
 
