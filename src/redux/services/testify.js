@@ -32,6 +32,13 @@ export const testifyApi = createApi({
           body: test
         })
       }),
+      updateMedia: builder.mutation({
+        query: ({userId, testId, mediaId, media}) => ({
+          url: `users/${userId}/tests/${testId}/media/${mediaId}`,
+          method: 'PATCH',
+          body: media
+        })
+      }),
       login: builder.mutation({
         query: (credentials) => ({
           url: `users/signin`,
@@ -42,4 +49,11 @@ export const testifyApi = createApi({
     }),
   })
 
-export const { useGetUserByIdQuery, useLoginMutation, useCreateTestMutation, useUploadMediaMutation, useGetRandomTestQuery, useUpdateTestMutation } = testifyApi
+export const { 
+  useGetUserByIdQuery, 
+  useLoginMutation,
+  useCreateTestMutation, 
+  useUploadMediaMutation, 
+  useGetRandomTestQuery, 
+  useUpdateTestMutation, 
+  useUpdateMediaMutation } = testifyApi

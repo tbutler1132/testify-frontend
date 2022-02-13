@@ -1,11 +1,14 @@
 import React from 'react';
-import { useGetRandomTestQuery } from '../redux/services/testify';
+import { useGetRandomTestQuery, useUpdateMediaMutation } from '../redux/services/testify';
 
 function VoteOnTestContainer(props) {
-    const { data, error, isLoading, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
+    const { data, error, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
+    const [voteOnTest, {isLoading}] = useUpdateMediaMutation()
 
     const voteHandler = (e, i) => {
-        console.log(data)
+        const updatedMedia = {...data.media[i], votes: data.media[i].votes + 1}
+        console.log(updatedMedia)
+        voteOnTest({userId: data.userId, testId: data.testId, mediaId: data.media[i]._id, media: updatedMedia})
     }
 
     return (
@@ -13,10 +16,10 @@ function VoteOnTestContainer(props) {
             {isFetching ? <div>Loading...</div> 
             :
             <>
-            <label onClick={(e) => voteHandler(e, 0)}>{data.media[0].title}</label>
-            <button>Vote</button>
+            <label >{data.media[0].title}</label>
+            <button onClick={(e) => voteHandler(e, 0)}>Vote</button>
             <label>{data.media[1].title}</label>
-            <button>Vote</button>
+            <button onClick={(e) => voteHandler(e, 1)}>Vote</button>
             <button onClick={refetch}>Submit</button>
             </>
             }
