@@ -14,7 +14,6 @@ li {
 }
 
 li:hover {
-  background-color: rgb(198, 211, 218);
   font-size: 19px;
 }
 
@@ -70,7 +69,10 @@ a {
 
 .header-utility-container {
   display: flex;
+  justify-content: flex-end;
   align-items: flex-end;
+  width: 20%;
+  padding-right: 40px;
 }
 
 .header-user-info-container {
@@ -94,9 +96,13 @@ a {
 .test-profile-title-container{
   width: 20%;
   border-right: solid;
-  border-color: rgb(192, 222, 240);
+  border-color: rgb(201, 201, 201);
   margin: 5px;
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 120px;
+  word-wrap: break-word;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .test-profile-media-container {
@@ -105,8 +111,9 @@ a {
 }
 
 .test-profile-media {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr .4fr;
+  margin-top: 12px;
 }
 
 #upload-media-button {
@@ -135,6 +142,7 @@ a {
   margin-left: auto;
   margin-top: 3rem;
   margin-bottom: 2rem;
+  height: 100px;
 }
 
 #create-test-queued-file-container > span{

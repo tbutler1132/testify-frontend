@@ -60,7 +60,7 @@ function CreateTest() {
             <li style={{ cursor: "pointer" }} key={media.url} onClick={(e) => mediaClickHandler(e, {url: media.url, title: media.title, votes: 0})}>
                 <div style={{display: "flex", alignContent: "flex-start"}}>
                      {mediaSelected(media.url) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
-                    <span>{media.title}</span>
+                    <span style={{marginLeft: "8px"}}>{media.title}</span>
                 </div>
             </li>    
         )
@@ -79,7 +79,7 @@ function CreateTest() {
             <div className="create-test-top-container">
                 <div className="create-test-form-container">
                     <TextField label='Title' variant='standard' value={title} onChange={titleChangeHandler}/>
-                    <TextField style={{marginTop: '2rem', zIndex: "-1"}} multiline label='Description' value={description} onChange={descriptionChangeHandler}/>
+                    <TextField style={{marginTop: '2rem', zIndex: "0"}} multiline label='Description' value={description} onChange={descriptionChangeHandler}/>
                 </div>
                 <div id="create-test-queued-file-container">
                     <span style={{borderRight: 'solid'}} onClick={(e) => selectionClickHandler(e, 0)}>
