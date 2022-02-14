@@ -35,12 +35,13 @@ const baseStyle = {
 
 const customStyles = {
     content: {
-      top: '50%',
+      top: '35%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      zIndex: "3"
     },
 };
 
@@ -115,7 +116,7 @@ function UploadModal() {
 
     return (
         <div>
-            <Button variant='outlined' onClick={openModal}>Upload Media</Button>
+            <Button color='secondary' size="small" variant='outlined' onClick={openModal}>Upload Media</Button>
             <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
@@ -126,7 +127,7 @@ function UploadModal() {
                 <div className="container">
                     <div {...getRootProps({style})}>
                         <input {...getInputProps()} />
-                        <p>Drag 'n' drop some files here, or click to select files</p>
+                        <p>Drag and drop a file or click to select a file</p>
                     </div>
                     <aside>
                         <h4>File</h4>

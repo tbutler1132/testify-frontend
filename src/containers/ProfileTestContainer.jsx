@@ -13,6 +13,7 @@ function ProfileTestContainer() {
                     <h4>
                         {test.title}
                     </h4>
+                    <p>{test.description}</p>
                 </div>
                 <div
                 className="test-profile-media-container"

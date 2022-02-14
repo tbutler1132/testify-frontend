@@ -19,20 +19,20 @@ function Header(props) {
                 </div>
                 <div className="header-nav-buttons-container">
                     <Link to="/test">
-                        <Button variant='outlined'>Create Test</Button>
+                        <Button variant='contained'>Create Test</Button>
                     </Link>
-                    <div id="upload-media-button">
-                        <UploadModal />
-                    </div>
                     <Link to="/vote">
-                        <Button variant='outlined'>Vote</Button>
+                        <Button variant='contained'>Vote</Button>
                     </Link>
                     <Link to="/media">
-                        <Button variant='outlined'>View your media</Button>       
+                        <Button variant='contained'>View your media</Button>       
                     </Link>
                 </div>
                 <div className="header-utility-container">
-                    <Button variant='outlined'>Logout</Button>
+                    <div id="upload-media-button">
+                        <UploadModal />
+                    </div>
+                    <Button color='error' size='small' style={{alignSelf: 'flex-end', margin: '5px'}} variant='outlined'>Logout</Button>
                 </div>
             </div>
         </div>

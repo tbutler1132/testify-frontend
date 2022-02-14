@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useGetRandomTestQuery, useUpdateMediaMutation } from '../redux/services/testify';
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 
 function VoteOnTestContainer(props) {
     const { data, error, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
@@ -34,18 +35,20 @@ function VoteOnTestContainer(props) {
 
     return (
         <div className='test-vote-container'>
-            {isFetching ? <div>Loading...</div> 
+            {isFetching ? <CircularProgress /> 
             :
             <>
-            <div className="poll-option-container">
-                <label >{data.media[0].title}</label>
-                <Button variant={buttonStyle(data.media[0]._id)} onClick={(e) => voteHandler(e, 0)}>Vote</Button>
+            <div className="poll-options-container">
+                <div className="poll-option-container">
+                    <label >{data.media[0].title}</label>
+                    <Button variant={buttonStyle(data.media[0]._id)} onClick={(e) => voteHandler(e, 0)}>Vote</Button>
+                </div>
+                <div className="poll-option-container">
+                    <label>{data.media[1].title}</label>
+                    <Button variant={buttonStyle(data.media[1]._id)} onClick={(e) => voteHandler(e, 1)}>Vote</Button>
+                </div>
             </div>
-            <div className="poll-option-container">
-                <label>{data.media[1].title}</label>
-                <Button variant={buttonStyle(data.media[1]._id)} onClick={(e) => voteHandler(e, 1)}>Vote</Button>
-            </div>
-            <Button disabled={!queuedVote} onClick={submitHandler}>Submit</Button>
+            <Button size='large' disabled={!queuedVote} onClick={submitHandler}>Submit</Button>
             </>
             }
         </div>

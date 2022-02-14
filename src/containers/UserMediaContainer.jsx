@@ -6,18 +6,20 @@ function UserMediaContainer(props) {
 
     const renderMedia = () => {
         return user.media.map(media => 
-        <div
+        <li
         key={media._id}
         >
             {media.title}
-        </div>    
+        </li>    
         )
     }
 
     return (
-        <div>
+        <div className='create-test-bottom-container'>
             <h1>MY MEDIA</h1>
-            {renderMedia()}
+            <ul>
+                {renderMedia()}
+            </ul>
         </div>
     );
 }
