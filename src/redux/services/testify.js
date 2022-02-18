@@ -32,6 +32,12 @@ export const testifyApi = createApi({
           body: test
         })
       }),
+      deleteTest: builder.mutation({
+        query: (test) => ({
+          url: `users/${test.userId}/tests/${test.testId}`,
+          method: 'DELETE'
+        })
+      }),
       updateMedia: builder.mutation({
         query: ({userId, testId, mediaId, media}) => ({
           url: `users/${userId}/tests/${testId}/media/${mediaId}`,

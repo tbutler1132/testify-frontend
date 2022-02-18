@@ -14,7 +14,7 @@ function Signin() {
         try {
             const user = await login(data).unwrap()
             dispatch(setCredentials(user))
-            navigate('/profile')
+            navigate('/home')
         } catch (error) {
             console.log("Oh no there was an error")
         }
