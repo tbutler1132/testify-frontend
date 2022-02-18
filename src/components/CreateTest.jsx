@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useNavigate } from 'react-router-dom'
 
 function CreateTest() {   
     const [title, setTitle] = useState('')
@@ -14,6 +15,7 @@ function CreateTest() {
     const { user } = useSelector((state) => state.auth)
     const { array, set, push, remove, filter, update, clear } = useArray([null, null])
     const [createTest, {isSuccess}] = useCreateTestMutation()
+    let navigate = useNavigate()
 
     const titleChangeHandler = (e) => {
         setTitle(e.target.value)
@@ -52,17 +54,23 @@ function CreateTest() {
             description: description,
             media: array
         }, id: user._id})
+        navigate('/profile')
     }
 
 
     const renderMedia = (e) => {
         return user.media.map(media => 
-            <li style={{ cursor: "pointer" }} key={media.url} onClick={(e) => mediaClickHandler(e, {url: media.url, title: media.title, votes: 0})}>
-                <div style={{display: "flex", alignContent: "flex-start"}}>
-                     {mediaSelected(media.url) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
-                    <span style={{marginLeft: "8px"}}>{media.title}</span>
-                </div>
-            </li>    
+            <div key={media.url} className='media-list'>
+                <li className='create-test-list' style={{ cursor: "pointer" }} onClick={(e) => mediaClickHandler(e, {url: media.url, title: media.title, votes: 0})}>
+                    <div style={{display: "flex", alignContent: "flex-start"}}>
+                        {mediaSelected(media.url) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                        <span style={{marginLeft: "8px"}}>{media.title}</span>
+                    </div>
+                </li>    
+                <audio controls>
+                    <source src={media.url} />    
+                </audio>  
+            </div>
         )
     }
 

@@ -56,4 +56,5 @@ export const {
   useUploadMediaMutation, 
   useGetRandomTestQuery, 
   useUpdateTestMutation, 
-  useUpdateMediaMutation } = testifyApi
+  useUpdateMediaMutation,
+} = testifyApi

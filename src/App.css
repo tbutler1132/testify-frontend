@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding-bottom: 100px;
   /* background-color: black;
   color: white; */
 }
@@ -13,7 +14,7 @@ li {
   transition-duration: 100ms;
 }
 
-li:hover {
+li.create-test-list:hover {
   font-size: 19px;
 }
 
@@ -27,13 +28,24 @@ a {
   color: black;
 }
 
+.media-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 50%;
+}
+
 .create-test-bottom-container {
   border: solid;
   margin: 20px;
   border-radius: 4px;
   border-color: gainsboro;
   background-color: rgb(252, 253, 253);
+  height: 300px;
   overflow: scroll;
+}
+
+.create-test-bottom-container.my-media {
+  height: fit-content;
 }
 
 .test-profile-container {

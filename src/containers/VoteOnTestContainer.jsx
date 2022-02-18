@@ -15,7 +15,6 @@ function VoteOnTestContainer(props) {
 
     const submitHandler = () => {
         const updatedMedia = {...queuedVote, votes: queuedVote.votes + 1}
-        console.log(updatedMedia)
         voteOnTest({userId: data.userId, testId: data.testId, mediaId: queuedVote._id, media: updatedMedia})
         setVote(null)
         refetch()
@@ -41,10 +40,16 @@ function VoteOnTestContainer(props) {
             <div className="poll-options-container">
                 <div className="poll-option-container">
                     <label >{data.media[0].title}</label>
+                    <audio controls>
+                        <source src={data.media[0].url} />    
+                    </audio>  
                     <Button variant={buttonStyle(data.media[0]._id)} onClick={(e) => voteHandler(e, 0)}>Vote</Button>
                 </div>
                 <div className="poll-option-container">
                     <label>{data.media[1].title}</label>
+                    <audio controls>
+                        <source src={data.media[1].url} />    
+                    </audio>  
                     <Button variant={buttonStyle(data.media[1]._id)} onClick={(e) => voteHandler(e, 1)}>Vote</Button>
                 </div>
             </div>

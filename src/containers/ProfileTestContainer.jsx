@@ -1,9 +1,20 @@
-import React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import AudioPlayer from 'material-ui-audio-player'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 
 function ProfileTestContainer() {
     const { user } = useSelector((state) => state.auth)
+    const [deletePopup, toggleDeletePopup] = useState(false)
+
+    const calculatePercentage = (test, votes) => {
+        let total = 0
+            test.media.forEach(media => {
+                total = total + media.votes
+            })
+        if(total === 0) return "0"
+        return votes / total * 100
+    }
 
     const renderTests = () => {
         return user.tests.map(test => 
@@ -29,10 +40,11 @@ function ProfileTestContainer() {
                             <audio controls>
                                 <source src={media.url} />    
                             </audio>  
-                            <p>{media.votes}</p>    
+                            <p style={{color: calculatePercentage(test, media.votes) > 50 ? "green" : "black"}}>{calculatePercentage(test, media.votes)}%</p>    
                         </div>
                     )}
                 </div>
+                <DeleteOutlineIcon />
             </div>    
         )
     }
