@@ -4,7 +4,6 @@ import {useDropzone} from 'react-dropzone';
 import { useUploadMediaMutation } from '../redux/services/testify';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button'
-import axios from 'axios';
 
 const baseStyle = {
     flex: 1,
@@ -49,12 +48,11 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 function UploadModal() {
-    let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [convertedFiles, setFiles] = useState(null)
     const { user } = useSelector((state) => state.auth)
-    const [uploadMedia, {isLoading}] = useUploadMediaMutation()
-    const [temp, setTemp] = useState(null)
+    const [uploadMedia] = useUploadMediaMutation()
+    // const [temp, setTemp] = useState(null)
   
     function openModal() {
       setIsOpen(true);
@@ -72,7 +70,7 @@ function UploadModal() {
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
-          setTemp(file)
+          // setTemp(file)
           reader.onabort = () => console.log('file reading was aborted')
           reader.onerror = () => console.log('file reading has failed')
           reader.readAsDataURL(file)
@@ -96,6 +94,7 @@ function UploadModal() {
 
           const submitHandler = () => {
             uploadMedia({id: user._id, files: convertedFiles})
+            setIsOpen(false)
           }
     
           const files = acceptedFiles.map(file => (
@@ -116,7 +115,6 @@ function UploadModal() {
           ]);
 
 
-          console.log("TEMP", temp)
     return (
         <div>
             <Button color='secondary' size="small" variant='outlined' onClick={openModal}>Upload Media</Button>

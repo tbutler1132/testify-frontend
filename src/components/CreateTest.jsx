@@ -6,15 +6,14 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import ClearIcon from '@mui/icons-material/Clear';
 import { useNavigate } from 'react-router-dom'
 
 function CreateTest() {   
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const { user } = useSelector((state) => state.auth)
-    const { array, set, push, remove, filter, update, clear } = useArray([null, null])
-    const [createTest, {isSuccess}] = useCreateTestMutation()
+    const { array, filter, update, clear } = useArray([null, null])
+    const [createTest] = useCreateTestMutation()
     let navigate = useNavigate()
 
     const titleChangeHandler = (e) => {

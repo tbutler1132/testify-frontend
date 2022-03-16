@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import DeletePopup from '../components/DeletePopup';
 
 function ProfileTestContainer() {
     const { user } = useSelector((state) => state.auth)
-    const [deletePopup, toggleDeletePopup] = useState(false)
 
     const calculatePercentage = (test, votes) => {
         let total = 0
@@ -44,7 +41,7 @@ function ProfileTestContainer() {
                         </div>
                     )}
                 </div>
-                <DeleteOutlineIcon />
+                <DeletePopup userId={user._id} testId={test._id}/>
             </div>    
         )
     }

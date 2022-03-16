@@ -32,6 +32,12 @@ export const testifyApi = createApi({
           body: test
         })
       }),
+      deleteTest: builder.mutation({
+        query: ({userId, testId}) => ({
+          url: `users/${userId}/tests/${testId}`,
+          method: 'DELETE',
+        })
+      }),
       updateMedia: builder.mutation({
         query: ({userId, testId, mediaId, media}) => ({
           url: `users/${userId}/tests/${testId}/media/${mediaId}`,
@@ -44,7 +50,14 @@ export const testifyApi = createApi({
           url: `users/signin`,
           method: 'POST',
           body: credentials,
-        }),
+        }),   
+      }),
+      signup: builder.mutation({
+        query: (credentials) => ({
+          url: `users/signup`,
+          method: 'POST',
+          body: credentials,
+        }),   
       })
     }),
   })
@@ -52,9 +65,11 @@ export const testifyApi = createApi({
 export const { 
   useGetUserByIdQuery, 
   useLoginMutation,
+  useSignupMutation,
   useCreateTestMutation, 
   useUploadMediaMutation, 
   useGetRandomTestQuery, 
   useUpdateTestMutation, 
   useUpdateMediaMutation,
+  useDeleteTestMutation
 } = testifyApi

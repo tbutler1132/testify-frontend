@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import userReducer from './user'
 import authReducer from './authSlice'
 import { testifyApi } from './services/testify'
 

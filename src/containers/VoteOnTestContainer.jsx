@@ -5,8 +5,8 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 
 function VoteOnTestContainer(props) {
-    const { data, error, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
-    const [voteOnTest, {isLoading}] = useUpdateMediaMutation()
+    const { data, isFetching, refetch } = useGetRandomTestQuery('bulbasaur')
+    const [voteOnTest] = useUpdateMediaMutation()
     const [queuedVote, setVote] = useState(null)
 
     const voteHandler = (e, i) => {

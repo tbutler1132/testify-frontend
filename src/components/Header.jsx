@@ -14,8 +14,7 @@ function Header(props) {
                     <Link to="/profile">
                         <h1>{user.username}</h1>
                     </Link>
-                    <h4>Karma</h4>
-                    <h4>Link</h4>
+                    <h4>Karma: 0</h4>
                 </div>
                 <div className="header-nav-buttons-container">
                     <Link to="/test">

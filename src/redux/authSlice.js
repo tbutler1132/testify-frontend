@@ -26,6 +26,12 @@ export const authSlice = createSlice({
             state.user.tests.push(payload)
           }
         )
+        .addMatcher(
+          testifyApi.endpoints.deleteTest.matchFulfilled,
+          (state, { payload }) => {
+            state.user.tests = payload
+          }
+        )
     },
   })
 
